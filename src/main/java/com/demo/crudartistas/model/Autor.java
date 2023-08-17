@@ -11,16 +11,16 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombres", nullable = false)
+    @Column(name = "nombres", nullable = false, length = 2000)
     private String nombres;
 
-    @Column(name = "nacimiento", nullable = false)
+    @Column(name = "nacimiento", nullable = false, length = 3000)
     private String nacimiento;
 
-    @Column(name = "ocupaciones", nullable = false)
+    @Column(name = "ocupaciones", nullable = false, length = 3000)
     private String ocupaciones;
 
-    @Column(name = "fallecimiento", nullable = false)
+    @Column(name = "fallecimiento", nullable = false, length = 3000)
     private String fallecimiento;
 
     public Autor() {
