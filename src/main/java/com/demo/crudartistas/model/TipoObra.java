@@ -18,6 +18,7 @@ public class TipoObra {
     }
 
     public TipoObra(String tipodeobra) {
+
         this.tipodeobra = tipodeobra;
     }
 
