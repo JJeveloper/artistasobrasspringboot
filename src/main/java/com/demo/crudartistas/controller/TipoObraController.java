@@ -14,7 +14,7 @@ public class TipoObraController {
     @Autowired
     TipoObraService tipoObraService;
 
-   @PostMapping("/savetipodeobra")
+   @PostMapping("/createtipodeobra")
    public String guardarTipoDeObra(@ModelAttribute("saveTO") TipoObra tipoObra){
        tipoObraService.saveTipoObra(tipoObra);
        return "redirect:/";

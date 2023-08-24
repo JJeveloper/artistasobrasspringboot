@@ -1,5 +1,6 @@
 package com.demo.crudartistas.controller;
 
+import com.demo.crudartistas.model.Autor;
 import com.demo.crudartistas.model.TipoObra;
 import com.demo.crudartistas.service.AutorService;
 import com.demo.crudartistas.service.TipoObraService;
@@ -24,10 +25,17 @@ public class MainController {
     }
 
     @GetMapping("/formguardartipodeobra")
-    public String tipoDeObra(Model model){
-        TipoObra to = new TipoObra();
-        model.addAttribute("gto", to);
+    public String tipoDeObra(){
         return "tipodeobra";
+    }
+
+
+    @GetMapping("/tableartista")
+    public String tablaArtista(Model model){
+
+        model.addAttribute("tableautor", autorService.getAutor());
+
+        return "artista";
     }
 
 
