@@ -20,7 +20,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index(){
-
         return "index";
     }
 
@@ -32,9 +31,7 @@ public class MainController {
 
     @GetMapping("/tableartista")
     public String tablaArtista(Model model){
-
         model.addAttribute("tableautor", autorService.getAutor());
-
         return "artista";
     }
 

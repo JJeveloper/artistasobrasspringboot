@@ -32,7 +32,7 @@
 
 <div class="container mt-5">
 
-    <a th:href="@{/formartista}" type="button" class="btn btn-primary mb-3">Agregar Artista</a>
+    <a th:href="@{/formcrearartista}" type="button" class="btn btn-primary mb-3">Agregar Artista</a>
 
     <div style="width:100%;overflow:auto; max-height:375px;">
 
@@ -42,8 +42,8 @@
                 <th scope="col">id</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Nacimiento</th>
-                <th scope="col">Fallecimiento</th>
                 <th scope="col">Ocupaciones</th>
+                <th scope="col">Fallecimiento</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Agregar Obra</th>
                 <th scope="col">Ver Obras</th>
@@ -53,26 +53,23 @@
             <tbody>
             <tr th:each="atr: ${tableautor}">
                 <td th:text="${atr.id}"></td>
-                <td th:text="${atr.nombres}"></td>
+                <td th:text="${atr.nombres}" id="nombre"></td>
                 <td th:text="${atr.nacimiento}"></td>
-                <td th:text="${atr.fallecimiento}"></td>
                 <td th:text="${atr.ocupaciones}"></td>
+                <td th:text="${atr.fallecimiento}"></td>
                 <td>
-                    <a th:href="@{/tableartista}" class="btn btn-warning text-white">Editar</a>
+                    <a th:href="@{/formeditarautor/{id} (id=${atr.id})}" class="btn btn-warning text-white">Editar</a>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm">Agregar
-                    </button>
+                    <button type="button" class="btn btn-primary btn-sm">Agregar</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm">Ver
-                    </button>
+                    <button type="button" class="btn btn-success btn-sm">Ver</button>
                 </td>
-
             </tr>
-
             </tbody>
         </table>
+
 
     </div>
 
