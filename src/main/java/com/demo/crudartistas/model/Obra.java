@@ -19,8 +19,8 @@ public class Obra {
     Autor autor;
 
     @ManyToOne
-    @JoinColumn(name = "tipodeobra", nullable = false)
-    TipoObra tipoObra;
+    @JoinColumn(name = "idtipodeobra", nullable = false)
+    private TipoObra tipoObra;
 
     @Column(name = "comentario", nullable = false)
     private String comentario;
@@ -81,5 +81,16 @@ public class Obra {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    @Override
+    public String toString() {
+        return "Obra{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", autor=" + autor +
+                ", tipoObra=" + tipoObra +
+                ", comentario='" + comentario + '\'' +
+                '}';
     }
 }

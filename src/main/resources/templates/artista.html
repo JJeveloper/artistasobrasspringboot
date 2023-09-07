@@ -51,17 +51,19 @@
             </thead>
 
             <tbody>
-            <tr th:each="atr: ${tableautor}">
+            <tr id="tablafila" th:each="atr: ${tableautor}">
                 <td th:text="${atr.id}"></td>
                 <td th:text="${atr.nombres}" id="nombre"></td>
                 <td th:text="${atr.nacimiento}"></td>
                 <td th:text="${atr.ocupaciones}"></td>
                 <td th:text="${atr.fallecimiento}"></td>
                 <td>
-                    <a th:href="@{/formeditarautor/{id} (id=${atr.id})}" class="btn btn-warning text-white">Editar</a>
+                    <a th:href="@{/formeditarautor/{id} (id=${atr.id})}" class="btn btn-warning btn-sm text-white">Editar</a>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm">Agregar</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modalAgregarLibro" git>Agregar
+                    </button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-success btn-sm">Ver</button>
@@ -69,12 +71,84 @@
             </tr>
             </tbody>
         </table>
-
-
     </div>
-
 </div>
 
+
+<!-- Modal Bootstrap, agregar libro-->
+<div class="modal fade" id="modalAgregarLibro">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel1">Agregar Libro</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form th:action="@{/createobra}"  th:object="${obr}" method="post">
+
+                    <div class="mb-4">
+                        <label for="nombrem" class="form-label">Nombre</label>
+                        <input type="text" name="nombrem" th:field="*{nombre}" class="form-control" id="nombrem">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="comentariom" class="form-label">Comentario</label>
+<!--                        <input type="text" name="comentariom" th:field="*{comentario}" class="form-control" id="comentariom">-->
+
+                        <textarea name="comentariom" th:field="*{comentario}"  class="form-control" rows="4"  id="comentariom">
+                     </textarea>
+
+                    </div>
+
+                    <input th:field="*{autor}"  type="hidden" name="autormodal" class="form-control" id="autormodal">
+
+                   <!-- combo box tipo de obra-->
+                     <div class="mb-4">
+                         <label class="form-label">Tipo de obra</label>
+                         <select th:field="*{tipoObra}" class="form-control" required>
+                             <th:block th:each="cbtp :${combotipodeobra}">
+                                 <option th:text="${cbtp.tipodeobra}" th:value="${cbtp.id}"/>
+                             </th:block>
+                         </select>
+                     </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary" value="Agregar">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let obtenerTabla = document.getElementById('tabla');
+
+    let obtenerInputModal = document.getElementById('autormodal');
+
+    obtenerTabla.addEventListener("click", (e)=>{
+
+        let idFila = e.target.parentElement.parentElement.children
+        obtenerInputModal.value = idFila[0].textContent
+
+    });
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

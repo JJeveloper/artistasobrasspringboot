@@ -23,7 +23,7 @@ public class AutorController {
     }
 
     @PostMapping("/createautor")
-    public String  guardarArtista(@ModelAttribute("sabeA") Autor autor){
+    public String  guardarArtista(@ModelAttribute("saveA") Autor autor){
         autorService.saveAutor(autor);
         return "redirect:/tableartista";
     }
