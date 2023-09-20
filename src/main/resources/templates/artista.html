@@ -66,7 +66,7 @@
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm">Ver</button>
+                    <a th:href="@{/tableverobra/{id} (id=${atr.id})}" class="btn btn-success btn-sm">Ver</a>
                 </td>
             </tr>
             </tbody>
@@ -108,7 +108,7 @@
                          <label class="form-label">Tipo de obra</label>
                          <select th:field="*{tipoObra}" class="form-control" required>
                              <th:block th:each="cbtp :${combotipodeobra}">
-                                 <option th:text="${cbtp.tipodeobra}" th:value="${cbtp.id}"/>
+                                 <option th:text="${cbtp.nombretipodeobra}" th:value="${cbtp.id}"/>
                              </th:block>
                          </select>
                      </div>

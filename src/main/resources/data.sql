@@ -20,5 +20,5 @@ VALUES ('Leonardo da Vinci',
 'Astrólogo, boticario, médico, escritor y traductor',
 '2 de julio de 1566 (62 años) Bandera de Francia Salón de Provenza, Francia');
 
-INSERT INTO `bdartistas`.`tipodeobra` (`tipodeobra`) VALUES ('pintura'), ('poesia'), ('escultura'),
+INSERT INTO `bdartistas`.`tipodeobra` (`nombretipodeobra`) VALUES ('pintura'), ('poesia'), ('escultura'),
  ('musica');

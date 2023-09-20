@@ -2,14 +2,16 @@ package com.demo.crudartistas.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "autor")
+import java.util.List;
+
+@Entity(name = "autor")
+@Table
 public class Autor {
 
     @Id
     @Column(name = "idautor")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "nombres", nullable = false, length = 2000)
     private String nombres;
@@ -23,29 +25,27 @@ public class Autor {
     @Column(name = "fallecimiento", nullable = false, length = 3000)
     private String fallecimiento;
 
+    @OneToMany(mappedBy = "autor")
+    private List<Obra> obra;
+
+
     public Autor() {
     }
 
-    public Autor(int id, String nombres, String ocupaciones, String nacimiento, String fallecimiento) {
+    public Autor(Integer id, String nombres, String nacimiento, String ocupaciones, String fallecimiento, List<Obra> obra) {
         this.id = id;
         this.nombres = nombres;
-        this.ocupaciones = ocupaciones;
         this.nacimiento = nacimiento;
+        this.ocupaciones = ocupaciones;
         this.fallecimiento = fallecimiento;
+        this.obra = obra;
     }
 
-    public Autor(String nombres, String ocupaciones, String nacimiento, String fallecimiento) {
-        this.nombres = nombres;
-        this.ocupaciones = ocupaciones;
-        this.nacimiento = nacimiento;
-        this.fallecimiento = fallecimiento;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -81,4 +81,11 @@ public class Autor {
         this.fallecimiento = fallecimiento;
     }
 
+    public List<Obra> getObra() {
+        return obra;
+    }
+
+    public void setObras(List<Obra> obra) {
+        this.obra = obra;
+    }
 }

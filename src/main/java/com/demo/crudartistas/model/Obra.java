@@ -2,25 +2,25 @@ package com.demo.crudartistas.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "obra")
+@Entity(name = "obra")
+@Table
 public class Obra {
 
     @Id
     @Column(name = "idobra")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "autor", nullable = false)
-    Autor autor;
+    private Autor autor;
 
-    @ManyToOne
-    @JoinColumn(name = "idtipodeobra", nullable = false)
-    private TipoObra tipoObra;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipodeobra", nullable = false)
+    private TipoObra tipodeobra;
 
     @Column(name = "comentario", nullable = false)
     private String comentario;
@@ -28,21 +28,20 @@ public class Obra {
     public Obra() {
     }
 
-    public Obra(int id, String nombre, Autor autor, TipoObra tipoObra, String comentario) {
+    public Obra(int id, String nombre, Autor autor, TipoObra tipodeobra, String comentario) {
         this.id = id;
         this.nombre = nombre;
         this.autor = autor;
-        this.tipoObra = tipoObra;
+        this.tipodeobra = tipodeobra;
         this.comentario = comentario;
     }
 
-    public Obra(String nombre, Autor autor, TipoObra tipoObra, String comentario) {
+    public Obra(String nombre, Autor autor, TipoObra tipodeobra, String comentario) {
         this.nombre = nombre;
         this.autor = autor;
-        this.tipoObra = tipoObra;
+        this.tipodeobra = tipodeobra;
         this.comentario = comentario;
     }
-
     public int getId() {
         return id;
     }
@@ -68,11 +67,11 @@ public class Obra {
     }
 
     public TipoObra getTipoObra() {
-        return tipoObra;
+        return tipodeobra;
     }
 
-    public void setTipoObra(TipoObra tipoObra) {
-        this.tipoObra = tipoObra;
+    public void setTipoObra(TipoObra tipodeobra) {
+        this.tipodeobra = tipodeobra;
     }
 
     public String getComentario() {
@@ -89,7 +88,7 @@ public class Obra {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", autor=" + autor +
-                ", tipoObra=" + tipoObra +
+                ", tipoObra=" + tipodeobra +
                 ", comentario='" + comentario + '\'' +
                 '}';
     }

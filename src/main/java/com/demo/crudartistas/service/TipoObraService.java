@@ -29,7 +29,7 @@ public class TipoObraService {
 
     public TipoObra updateByID(TipoObra request, Integer id){
         TipoObra tipoObra = tipoObraRepository.findById(id).get();
-        tipoObra.setTipodeobra(request.getTipodeobra());
+        tipoObra.setNombretipodeobra(request.getNombretipodeobra());
         tipoObraRepository.save(tipoObra);
         return tipoObra;
     }
