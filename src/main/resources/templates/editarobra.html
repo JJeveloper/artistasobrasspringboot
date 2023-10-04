@@ -27,48 +27,38 @@
     </div>
 </nav>
 
-<div class="d-flex justify-content-center align-items-center" >
+<div class="d-flex justify-content-center align-items-center">
 
-    <style>
-        .form-control{
-            font-size:12px;
-        }
-    </style>
-
-    <form id="editform" th:action="@{/createautor}" method="post" style="width:550px; height:565px; margin-top:40px; padding:15px"
+    <form th:action="@{/editobra}" method="post" style="width:550px; height:495px; margin-top:40px; padding:15px"
           class="border border-primary">
 
-        <input type="hidden" name="id" th:value="${atrupd.id}" th:name="id">
+        <input type="hidden" name="id" th:value="${obraupd.id}">
 
         <div class="mb-4">
-            <label for="nombres" class="form-label">Nombres</label>
-            <textarea name="nombres" th:text="${atrupd.nombres}" th:name="nombres" class="form-control" rows="3" id="nombres">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" name="nombre" th:value="${obraupd.nombre}" class="form-control" id="nombre" required>
+        </div>
+
+        <input th:field="${obraupd.autor.id}"  type="hidden" name="autormodal" class="form-control" id="idautor">
+
+        <div class="mb-4">
+            <label for="comentario" class="form-label">Comentario</label>
+            <textarea name="comentario" th:text="${obraupd.comentario}" th:name="comentario" class="form-control" rows="3" id="comentario">
             </textarea>
         </div>
 
+        <!-- combo box tipo de obra-->
         <div class="mb-4">
-            <label for="nacimiento" class="form-label">Nacimiento</label>
-            <!--<input type="text" name="nacimiento" th:value="${atrupd.nacimiento}" class="form-control" id="nacimiento" required>-->
-            <textarea name="nacimiento" th:text="${atrupd.nacimiento}" th:name="nacimiento" class="form-control" rows="3" id="nacimiento">
-            </textarea>
-        </div>
-
-        <div class="mb-4">
-            <label for="ocupaciones" class="form-label">Ocupaciones</label>
-            <textarea name="ocupaciones" th:text="${atrupd.ocupaciones}" th:name="ocupaciones" class="form-control" rows="3"  id="ocupaciones">
-            </textarea>
-        </div>
-
-        <div class="mb-4">
-            <label for="fallecimiento" class="form-label">Fallecimiento</label>
-            <textarea  name="fallecimiento" th:text="${atrupd.fallecimiento}" th:name="fallecimiento" class="form-control" rows="3" id="fallecimiento" >
-            </textarea>
+            <label class="form-label">Tipo de obra</label>
+            <select th:field="*{obraupd.TipoObra.id}" class="form-control" required>
+                <th:block th:each="cbtp :${combotipodeobra}">
+                    <option  th:text="${cbtp.nombretipodeobra}" th:value="${cbtp.id}" />
+                </th:block>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
-
     </form>
-
 
 </div>
 

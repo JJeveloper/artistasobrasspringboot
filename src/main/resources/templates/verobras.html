@@ -50,15 +50,14 @@
                 <tr id="tablafila" th:each="obra: ${tableobra}">
                     <td th:text="${obra.id}"></td>
                     <td th:text="${obra.nombre}"></td>
-                   <td th:text="${obra.comentario}"></td>
+                    <td th:text="${obra.comentario}"></td>
                     <td th:text="${obra.TipoObra.nombretipodeobra}"></td>
                     <td>
-                        <a class="btn btn-warning btn-sm text-white">Editar</a>
+                        <a th:href="@{/formeditarobra/{id} (id=${obra.id})}" class="btn btn-warning btn-sm text-white">Editar</a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalAgregarLibro" git>Eliminar
-                        </button>
+                        <a th:onclick="eliminar([[${obra.id}]])"  type="button" class="btn btn-primary btn-sm">Eliminar</a>
+                        <!--th:onclick="eliminar([[${obra.id}]])"-->
                     </td>
                 </tr>
             </tbody>
@@ -67,7 +66,21 @@
     </div>
 </div>
 
+<script  th:inline="javascript">
+        function  eliminar(id) {
 
+
+            var yes_no = confirm("desea eliminar el registro")
+            if(yes_no==true){
+
+
+                var host = location.protocol + '//' + location.host + '/deleteobra/' +id
+                window.location.href = host
+                console.log(id)
+            }
+
+        }
+    </script>
 
 </body>
 </html>
